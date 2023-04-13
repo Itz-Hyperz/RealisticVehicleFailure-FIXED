@@ -34,7 +34,7 @@ cfg = {
 
 	torqueMultiplierEnabled = true,				-- Decrease engine torque as engine gets more and more damaged
 
-	limpMode = true,							-- If true, the engine never fails completely, so you will always be able to get to a mechanic unless you flip your vehicle and preventVehicleFlip is set to true
+	limpMode = false,							-- If true, the engine never fails completely, so you will always be able to get to a mechanic unless you flip your vehicle and preventVehicleFlip is set to true
 	limpModeMultiplier = 0.15,					-- The torque multiplier to use when vehicle is limping. Sane values are 0.05 to 0.25
 
 	preventVehicleFlip = true,					-- If true, you can't turn over an upside down vehicle
