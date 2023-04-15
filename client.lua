@@ -3,6 +3,7 @@
 ------------------------------------------
 --
 --	Created by Jens Sandalgaard
+--      FIXED by Hyperz#0001 ( https://github.com/Itz-Hyperz/RealisticVehicleFailure-FIXED )
 --
 --	This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
 --
