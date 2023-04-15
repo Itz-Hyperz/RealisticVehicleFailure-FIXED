@@ -172,13 +172,16 @@ AddEventHandler('iens:repair', function()
 		local ped = GetPlayerPed(-1)
 		vehicle = GetVehiclePedIsIn(ped, false)
 		if IsNearMechanic() then
-			SetVehicleUndriveable(vehicle,false)
-			SetVehicleFixed(vehicle)
-			healthBodyLast=1000.0
-			healthEngineLast=1000.0
-			healthPetrolTankLast=1000.0
-			SetVehicleEngineOn(vehicle, true, false )
-			notification("~g~The mechanic repaired your car!")
+			notification("~y~The mechanic is taking a look...")
+			Citizen.SetTimeout(cfg.repairTimeoutMS, function()
+				SetVehicleUndriveable(vehicle,false)
+				SetVehicleFixed(vehicle)
+				healthBodyLast=1000.0
+				healthEngineLast=1000.0
+				healthPetrolTankLast=1000.0
+				SetVehicleEngineOn(vehicle, true, false )
+				notification("~g~The mechanic repaired your car!")
+			end)
 			return
 		end
 		if GetVehicleEngineHealth(vehicle) < cfg.cascadingFailureThreshold + 5 then
