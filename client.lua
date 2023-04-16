@@ -175,13 +175,16 @@ AddEventHandler('iens:repair', function()
 		if IsNearMechanic() then
 			notification("~y~The mechanic is taking a look...")
 			Citizen.SetTimeout(cfg.repairTimeoutMS, function()
-				SetVehicleUndriveable(vehicle,false)
-				SetVehicleFixed(vehicle)
-				healthBodyLast=1000.0
-				healthEngineLast=1000.0
-				healthPetrolTankLast=1000.0
-				SetVehicleEngineOn(vehicle, true, false )
-				notification("~g~The mechanic repaired your car!")
+				if IsNearMechanic() then
+					SetVehicleUndriveable(vehicle,false)
+					SetVehicleFixed(vehicle)
+					healthBodyLast=1000.0
+					healthEngineLast=1000.0
+					healthPetrolTankLast=1000.0
+					SetVehicleEngineOn(vehicle, true, false )
+					notification("~g~The mechanic repaired your vehicle!")
+				else
+					notification("~y~Your vehicle left the shop without being repaired.")
 			end)
 			return
 		end
