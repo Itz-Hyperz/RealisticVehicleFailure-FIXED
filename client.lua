@@ -185,6 +185,7 @@ AddEventHandler('iens:repair', function()
 					notification("~g~The mechanic repaired your vehicle!")
 				else
 					notification("~y~Your vehicle left the shop without being repaired.")
+				end
 			end)
 			return
 		end
