@@ -11,7 +11,7 @@ I hope you guys enjoy!
 
 **FiveM Resource Link:** https://forum.cfx.re/t/realisticvehiclefailure-fixed-2023/5074189
 
-<a href="https://www.youtube.com/watch?v=FEt5bCwJDLs">
+<a target="_blank" href="https://www.youtube.com/watch?v=FEt5bCwJDLs">
   <img src="https://i.ytimg.com/vi/FEt5bCwJDLs/maxresdefault.jpg">
 </a>
 
