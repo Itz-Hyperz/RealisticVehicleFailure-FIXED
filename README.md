@@ -11,4 +11,8 @@ I hope you guys enjoy!
 
 **FiveM Resource Link:** https://forum.cfx.re/t/realisticvehiclefailure-fixed-2023/5074189
 
+<a href="https://www.youtube.com/watch?v=FEt5bCwJDLs">
+  <img src="https://i.ytimg.com/vi/FEt5bCwJDLs/maxresdefault.jpg">
+</a>
+
 **P.S.** [Attempted Fix](https://forum.cfx.re/t/realistic-vehicle-failure-repair-fix/4887760) this release was made in the past, however I was unable to get it to work for me, and DIY fixing your car is not suitable for my server. This fix brings back the ORIGINAL `/repair` that was meant to be used with proximity to mechanics!
