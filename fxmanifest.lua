@@ -1,19 +1,13 @@
-fx_version 'adamant'
+fx_version 'cerulean'
 
-games {
-	'gta5'
-}
+game 'gta5'
 
 author 'iEns, Hyperz#0001'
 version '2.0.0'
 description 'A fixed version of iEns RealisticVehcileFailure script. Now with a working /repair command!'
 
-client_scripts {
-	"config.lua",
-	"client.lua"
-}
+client_scripts "client.lua"
 
-server_scripts {
-	"config.lua",
-	"server.lua"
-}
+shared_script "config.lua"
+
+server_script "server.lua"
