@@ -50,7 +50,7 @@ local fixMessagePos = math.random(repairCfg.fixMessageCount)
 local noFixMessagePos = math.random(repairCfg.noFixMessageCount)
 
 -- Display blips on map
-Citizen.CreateThread(function()
+CreateThread(function()
 	if (cfg.displayBlips == true) then
 		for _, item in pairs(repairCfg.mechanics) do
 			item.blip = AddBlipForCoord(item.x, item.y, item.z)
@@ -70,14 +70,14 @@ local function notification(msg)
 end
 
 local function isPedDrivingAVehicle()
-	local ped = GetPlayerPed(-1)
+	local ped = PlayerPedId()
 	vehicle = GetVehiclePedIsIn(ped, false)
 	if IsPedInAnyVehicle(ped, false) then
 		-- Check if ped is in driver seat
 		if GetPedInVehicleSeat(vehicle, -1) == ped then
 			local class = GetVehicleClass(vehicle)
 			-- We don't want planes, helicopters, bicycles and trains
-			if class ~= 15 and class ~= 16 and class ~=21 and class ~=13 then
+			if class ~= 15 and class ~= 16 and class ~= 21 and class ~= 13 then
 				return true
 			end
 		end
@@ -86,10 +86,10 @@ local function isPedDrivingAVehicle()
 end
 
 local function IsNearMechanic()
-	local ped = GetPlayerPed(-1)
+	local ped = PlayerPedId()
 	local pedLocation = GetEntityCoords(ped, 0)
 	for _, item in pairs(repairCfg.mechanics) do
-		local distance = GetDistanceBetweenCoords(item.x, item.y, item.z,  pedLocation["x"], pedLocation["y"], pedLocation["z"], true)
+		local distance = #(vec3(item.x, item.y, item.z) - vec3(pedLocation["x"], pedLocation["y"], pedLocation["z"]))
 		if distance <= item.r then
 			return true
 		end
@@ -170,7 +170,7 @@ end
 RegisterNetEvent('iens:repair')
 AddEventHandler('iens:repair', function()
 	if isPedDrivingAVehicle() then
-		local ped = GetPlayerPed(-1)
+		local ped = PlayerPedId()
 		vehicle = GetVehiclePedIsIn(ped, false)
 		if IsNearMechanic() then
 			notification("~y~The mechanic is taking a look...")
@@ -181,7 +181,7 @@ AddEventHandler('iens:repair', function()
 					healthBodyLast=1000.0
 					healthEngineLast=1000.0
 					healthPetrolTankLast=1000.0
-					SetVehicleEngineOn(vehicle, true, false )
+					SetVehicleEngineOn(vehicle, true, false, false)
 					notification("~g~The mechanic repaired your vehicle!")
 				else
 					notification("~y~Your vehicle left the shop without being repaired.")
@@ -196,7 +196,7 @@ AddEventHandler('iens:repair', function()
 				SetVehiclePetrolTankHealth(vehicle, 750.0)
 				healthEngineLast=cfg.cascadingFailureThreshold +5
 				healthPetrolTankLast=750.0
-					SetVehicleEngineOn(vehicle, true, false )
+				SetVehicleEngineOn(vehicle, true, false, false)
 				SetVehicleOilLevel(vehicle,(GetVehicleOilLevel(vehicle)/3)-0.5)
 				notification("~g~" .. repairCfg.fixMessages[fixMessagePos] .. ", now get to a mechanic!")
 				fixMessagePos = fixMessagePos + 1
@@ -220,9 +220,9 @@ AddEventHandler('iens:notAllowed', function()
 end)
 
 if cfg.torqueMultiplierEnabled or cfg.preventVehicleFlip or cfg.limpMode then
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		while true do
-			Citizen.Wait(0)
+			Wait(0)
 			if cfg.torqueMultiplierEnabled or cfg.sundayDriver or cfg.limpMode then
 				if pedInSameVehicleLast then
 					local factor = 1.0
@@ -306,10 +306,10 @@ if cfg.torqueMultiplierEnabled or cfg.preventVehicleFlip or cfg.limpMode then
 	end)
 end
 
-Citizen.CreateThread(function()
+CreateThread(function()
 	while true do
-		Citizen.Wait(50)
-		local ped = GetPlayerPed(-1)
+		Wait(50)
+		local ped = PlayerPedId()
 		if isPedDrivingAVehicle() then
 			vehicle = GetVehiclePedIsIn(ped, false)
 			vehicleClass = GetVehicleClass(vehicle)
@@ -458,4 +458,3 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
